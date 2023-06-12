@@ -55,7 +55,10 @@ int main(int argc, char* argv[]) {
         cout << endl;
     }
 
-    
+    auto f = [] (vector<std::pair<int,int> > neigh) {
+
+        return;
+    }
     
 
     return 0;
