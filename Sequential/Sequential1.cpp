@@ -55,11 +55,28 @@ int main(int argc, char* argv[]) {
         cout << endl;
     }
 
-    auto f = [] (vector<std::pair<int,int> > neigh) {
+    // For now, just a bit of random things.
+    // For example, I want to figure out if it is better to use = or & (value or reference)
+    auto average = [&] (vector<std::pair<int,int> > neighborhood) {
+        bool exp1 = (i==0 || i==m-1); 
+        bool exp2 = (j==0 || j==n-1);
+
+        /* no check for offset. The huge padding approach is tempting,
+            and I'm not the kind of guy that is worried about memory usage,
+            but it seams very inefficient... 
+            The problem is that I have no control on the function. So this is what it is
+            I could thing about it more. */
+        int sum = A[i][j];
+        for(ind : neighborhood) {
+            // Hopefully this works
+            sum += (i+ind.first!=0)*(j+ind.second!=0)*A[(i+ind.first!=0)*(i+ind.first)][(j+ind.second!=0)*(j+ind.second)];
+        }
+        int den = 5 - (exp1 || exp2) - (exp1 && exp2);
 
         return;
-    }
-    
+    };
+
+        
 
     return 0;
 }
