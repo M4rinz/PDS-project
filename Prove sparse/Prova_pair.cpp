@@ -31,10 +31,12 @@ int main(int argc, char* argv[]) {
             first+= pair.first;
             second+= pair.second;
         }
+        pair<int,int> res = {first,second};
 
-        return {first,second}
-    }
+        return res;
+    };
     
+    cout << "Somma pairwise degli elementi di v = <" << sum_pair(v).first << "," << sum_pair(v).second << ">" << endl;
 
     return 0;
 }
