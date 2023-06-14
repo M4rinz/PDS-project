@@ -25,13 +25,26 @@ auto stencil( vector<vector<double> > A,
             vector<pair<int,int> > neighborhood, 
             int niter) {
 
-    vector< vector<double> > B(A.size(), vector<double>(A[1].size()));            
+    vector< vector<double> > B(A.size(), vector<double>(A[1].size())); 
+
     for (int k = 0; k < niter; k++) {
-        
 
+        for (int i = 0; i < A.size(); i++) {
+            for (int j = 0; j < A[i].size(); j++) {
+                vector<float> elems;
+                elems.push_back(A[i][j]);
+                for(auto pair : neighborhood) {
+                    /* We also add "illegal ones". But this is the sequential version, 
+                        so I can be a little bit less concerned with the issues that lead
+                        to a failure with vectorization: the goal is to create the best
+                        sequential version */
+                    elems.push_back(A[i+pair.first][j+pair.second]);  
+                }
+                B[i][j] = f(elems);
 
-
-
+            }            
+        }
+        std::swap(A,B);
 
     }
     return;
