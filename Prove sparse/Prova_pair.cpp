@@ -12,6 +12,7 @@ int main(int argc, char* argv[]) {
     cout << "p = <" << p.first << "," << p.second << ">" << endl;
 
     vector<pair<int,int> > v;
+    vector<pair<int,int> > w = {{69,420}};
 
     for(int i = 0; i < 5; i++) {
         v.push_back({i,i});
@@ -35,6 +36,7 @@ int main(int argc, char* argv[]) {
 
         return res;
     };
+    cout << "w = <" << sum_pair(w).first << "," << sum_pair(w).second << ">" << endl;
     
     cout << "Somma pairwise degli elementi di v = <" << sum_pair(v).first << "," << sum_pair(v).second << ">" << endl;
 
