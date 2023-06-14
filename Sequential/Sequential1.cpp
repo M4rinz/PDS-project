@@ -38,7 +38,10 @@ auto stencil( vector<vector<double> > A,
                         so I can be a little bit less concerned with the issues that lead
                         to a failure with vectorization: the goal is to create the best
                         sequential version */
-                    elems.push_back(A[i+pair.first][j+pair.second]);  
+                    int ipf = i+pair.first;
+                    int jps = j+pair.second;
+                    if((0 <= ipf && ipf < A.size()) && (0 <= jps && jps < A[i].size()))
+                        elems.push_back(A[ipf][jps]);  
                 }
                 B[i][j] = f(elems);
 
