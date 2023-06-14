@@ -8,9 +8,9 @@ using namespace std;    //This might be bad habit, but for now I keep it
 
 
 // Function that prints the matrix
-void print2DVector(const vector< vector<double> > A, int row_start, int row_finish, int col_start, int col_finish) {
-    for(int i=row_start; i<=row_finish; i++) {
-        for(int j=col_start; j<=col_finish; j++) {
+void print2DVector(const vector< vector<double> > A) {
+    for(int i=0; i< A.size(); i++) {
+        for(int j=0; j<= A[i].size(); j++) {
             cout << A[i][j] << " ";
         }
         cout << endl;
@@ -20,7 +20,22 @@ void print2DVector(const vector< vector<double> > A, int row_start, int row_fini
     return;
 }
 
+auto stencil( vector<vector<double> > A,
+            function<float(vector<float>)> f, 
+            vector<pair<int,int> > neighborhood, 
+            int niter) {
 
+    vector< vector<double> > B(A.size(), vector<double>(A[1].size()));            
+    for (int k = 0; k < niter; k++) {
+        
+
+
+
+
+
+    }
+    return;
+} 
 
 
 
@@ -50,10 +65,30 @@ int main(int argc, char* argv[]) {
     }
     
     if (printflag == 'y') {
-        cout << "Starting matrix: " << endl:
-        print2DVector(A,0,m-1,0,n-1);
+        cout << "Starting matrix: " << endl;
+        print2DVector(A);
         cout << endl;
     }
+
+
+    function<float(vector<float>)> average = [](vector<float> v) {
+        float sum = 0;
+        for(float n : v) sum += n;
+        return sum/(v.size());
+    };
+
+
+        
+
+    return 0;
+}
+
+
+
+/* DISCARICA
+
+
+
 
     // For now, just a bit of random things.
     // For example, I want to figure out if it is better to use = or & (value or reference)
@@ -61,13 +96,13 @@ int main(int argc, char* argv[]) {
         bool exp1 = (i==0 || i==m-1); 
         bool exp2 = (j==0 || j==n-1);
 
-        /* no check for offset. The huge padding approach is tempting,
+            no check for offset. The huge padding approach is tempting,
             and I'm not the kind of guy that is worried about memory usage,
             but it seams very inefficient... 
             The problem is that I have no control on the function. So this is what it is
-            I could thing about it more. */
+            I could thing about it more. 
         int sum = A[i][j];
-        for(ind : neighborhood) {
+        for(auto ind : neighborhood) {
             // Hopefully this works
             sum += (i+ind.first!=0)*(j+ind.second!=0)*A[(i+ind.first!=0)*(i+ind.first)][(j+ind.second!=0)*(j+ind.second)];
         }
@@ -76,7 +111,5 @@ int main(int argc, char* argv[]) {
         return;
     };
 
-        
 
-    return 0;
-}
+*/
