@@ -20,18 +20,19 @@ void print2DVector(const vector< vector<double> > A) {
     return;
 }
 
-auto stencil( vector<vector<double> > A,
-            function<float(vector<float>)> f, 
+template <typename T>
+auto stencil( vector<vector<T> >& A,
+            function<T(vector<T>)> f, 
             vector<pair<int,int> > neighborhood, 
             int niter) {
 
-    vector< vector<double> > B(A.size(), vector<double>(A[1].size())); 
+    vector< vector<T> > B(A.size(), vector<T>(A[1].size())); 
 
     for (int k = 0; k < niter; k++) {
 
         for (int i = 0; i < A.size(); i++) {
             for (int j = 0; j < A[i].size(); j++) {
-                vector<float> elems;
+                vector<T> elems;
                 elems.push_back(A[i][j]);
                 for(auto pair : neighborhood) {
                     /* We also add "illegal ones". But this is the sequential version, 
@@ -52,6 +53,9 @@ auto stencil( vector<vector<double> > A,
     }
     return;
 } 
+
+
+
 
 
 
@@ -87,9 +91,9 @@ int main(int argc, char* argv[]) {
     }
 
 
-    function<float(vector<float>)> average = [](vector<float> v) {
-        float sum = 0;
-        for(float n : v) sum += n;
+    function<double(vector<double>)> average = [](vector<double> v) {
+        double sum = 0;
+        for(double n : v) sum += n;
         return sum/(v.size());
     };
 

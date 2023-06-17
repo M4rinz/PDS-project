@@ -20,7 +20,7 @@ void print2DVector(const vector< vector<double> > A) {
     return;
 }
 
-auto stencil( vector<vector<double> > A,
+auto stencil( vector<vector<double> >& A,
             function<double(vector<double>)> f, 
             vector<pair<int,int> > neighborhood, 
             int niter) {
