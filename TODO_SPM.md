@@ -7,7 +7,7 @@ Una specie di lavagnetta dei post-it con molte cose (spero non troppe) alla rinf
   A ricevimento, molto probabilmente.
   
    - [ ] Si può usare Git sulla macchina multicore? O dà fastidio a qualche utente? Nel caso, va impostata in qualche modo particolare?
-   - [ ] Oioioa
+   - [ ] Per fare i miei test e le mie misure, va bene usare utimer.hpp, il file che ci ha dato il professore?
   
   ---
 </details> 
