@@ -1,4 +1,19 @@
 
 Eseguire 100 volte il programma sequenziale (con i parametri indicati), dopodiché stampare la media dei tempi
 
-for((i=0; i<100; i++)) do ./TemplateSeq_main 100 200 123 10 n; done | awk '{sum+=$4;} END{print sum/NR " " $5}'
+for((i=0; i<100; i++)) do ./TemplateSeq_main 100 200 123 10 n; done | awk '{sum+=$4;} END{print sum/NR,$5}'
+
+
+piccolo script di awk che estrae i dati (solo i numeri) da un file di testo e ne calcola la media, stampandola
+awk '{sum+=$4} END{print sum/NR,$5}' ../Prove\ sparse/Prove\ files\ di\ testo/prova1.txt
+
+
+Piccolo script di awk che calcola media e varianza. La media è giusta, e anche la varianza dovrebbe
+awk '{sum+=$4;sumsq+=$4*$4;}
+	{avg=sum/NR;} 
+	END{print "avg =",avg,$5;
+		var=sumsq/NR-(avg*avg); 
+		print "var =",var,$5; 
+		stdev=sqrt(var); 
+		print "stdev =",stdev;
+		}' ../Prove\ sparse/Prove\ files\ di\ testo/prova1.txt
