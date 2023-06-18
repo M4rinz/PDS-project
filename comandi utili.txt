@@ -1,0 +1,4 @@
+
+Eseguire 100 volte il programma sequenziale (con i parametri indicati), dopodiché stampare la media dei tempi
+
+for((i=0; i<100; i++)) do ./TemplateSeq_main 100 200 123 10 n; done | awk '{sum+=$4;} END{print sum/NR " " $5}'
