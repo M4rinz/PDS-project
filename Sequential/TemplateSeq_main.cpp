@@ -64,10 +64,10 @@ int main(int argc, char* argv[]) {
     vector<pair<int,int> > crossNeigh = {{-1,0},{1,0},{0,-1},{0,1}};
     vector<pair<int,int> > ringNeigh = {{-1,0},{-1,1},{0,1},{1,1},{1,0},{1,-1},{0,1},{-1,-1}};
 
-    stencil(A,average,crossNeigh,niter);
+    vector<vector<double> >* B = stencil(A,average,crossNeigh,niter);
 
     cout<< "Final matrix: " << endl;
-    print2DVector(A);
+    print2DVector(*B);
     cout << endl;
         
 

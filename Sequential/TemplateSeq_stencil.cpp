@@ -3,12 +3,9 @@
 #include <functional>   //for functional stuff
 
 
-//using namespace std;    //This might be bad habit, but for now I keep it
-
-
 
 template <typename T>
-auto stencil( std::vector<std::vector<T> >& A,
+std::vector<std::vector<T> >* stencil( std::vector<std::vector<T> >& A,
             std::function<T(std::vector<T>)> f, 
             std::vector<std::pair<int,int> > neighborhood, 
             int niter) {
@@ -34,7 +31,7 @@ auto stencil( std::vector<std::vector<T> >& A,
         std::swap(A,B);
 
     }
-    return;
+    return &A;
 } 
 
 
