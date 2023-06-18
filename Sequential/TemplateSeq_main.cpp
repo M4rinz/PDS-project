@@ -4,6 +4,8 @@
 #include <cstring>      //string functions such as strcmp
 
 #include "TemplateSeq_stencil.cpp"        //I try to #include my file
+#include "../utimer.hpp"
+
 
 using namespace std;    //This might be bad habit, but for now I keep it
 
@@ -64,11 +66,21 @@ int main(int argc, char* argv[]) {
     vector<pair<int,int> > crossNeigh = {{-1,0},{1,0},{0,-1},{0,1}};
     vector<pair<int,int> > ringNeigh = {{-1,0},{-1,1},{0,1},{1,1},{1,0},{1,-1},{0,1},{-1,-1}};
 
-    vector<vector<double> >* B = stencil(A,average,crossNeigh,niter);
 
-    cout<< "Final matrix: " << endl;
-    print2DVector(*B);
+    //utimer t0("Seq");
+    utimer* t0 = new utimer("Seq");
+    vector<vector<double> >* B = stencil(A,average,crossNeigh,niter);
+    //~t0("Seq");
+    delete t0;
     cout << endl;
+    
+    
+    if (printflag == 'y') {
+        cout<< "Final matrix: " << endl;
+        print2DVector(*B);
+        cout << endl;
+    }
+
         
 
     return 0;
