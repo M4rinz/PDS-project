@@ -62,7 +62,8 @@ std::vector<std::vector<T> >* stencil(
         }
         ths.push_back(std::thread(ThreadBody,portion*(nw-1),A.size()));
         
-        for(auto th : ths) th.join();
+        //for(auto th : ths) th.join();
+        for(int i = 0; i < ths.size(); i++) ths[i].join();
 
         std::swap(A,B);
 
