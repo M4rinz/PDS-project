@@ -5,7 +5,7 @@
 using namespace std;
 
 
-void myStencil(function<int(int)> f, vector<vector<int> >& A, int niter) {
+vector<vector<int> >* myStencil(function<int(int)> f, vector<vector<int> >& A, int niter) {
     for(int k = 0; k < niter; k++) {
         for(int i = 0; i < A.size(); i++) {  
             for(int j = 0; j < A[i].size(); j++)
@@ -13,7 +13,7 @@ void myStencil(function<int(int)> f, vector<vector<int> >& A, int niter) {
         }
     }
 
-    return;
+    return &A;
 }
 
 // Function that prints the matrix
@@ -51,9 +51,9 @@ int main(int argc, char* argv[]) {
     cout << "A.size() = " << A.size() << '\t' << "m = " << m << endl;
     cout << "A[1].size() = " << A[1].size() << '\t' << "n = " << n << endl;
 
-    myStencil(g, A, niter);
+    vector< vector<int> >* B = myStencil(g, A, niter);
     cout << "A after " << niter << " applications of the function =" << endl;
-    print2DVector(A);
+    print2DVector(*B);
     
 
     return 0;
