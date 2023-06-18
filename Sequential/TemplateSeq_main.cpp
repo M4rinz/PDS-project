@@ -72,16 +72,14 @@ int main(int argc, char* argv[]) {
     vector<vector<double> >* B = stencil(A,average,crossNeigh,niter);
     //~t0("Seq");
     delete t0;
-    cout << endl;
-    
+
     
     if (printflag == 'y') {
+        cout << endl;
         cout<< "Final matrix: " << endl;
         print2DVector(*B);
         cout << endl;
     }
-
-        
 
     return 0;
 }
