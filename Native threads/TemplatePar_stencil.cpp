@@ -44,6 +44,41 @@ std::vector<std::vector<T> >* stencil(
     for (int k = 0; k < niter; k++) {
         // splitting
 
+        /*
+            int nw = nthreads;  //I'll replace it with (n*m)/gamma, where gamma is computed thanks to the sequential results
+            int nPortions_row, nPortions_col, portionRow, portionCol;
+            // remember that m and n are undefined...
+            if (m =< n) {
+                nPortions_row = (nw*m)/n;
+                portionRow = n/nw;
+                nPortions_col = n/m;
+                portionCol = m;
+            }
+            else {
+                nPortions_row = (nw*n)/m;
+                portionRow = m/nw;
+                nPortions_col = m/n;
+                portionCol = n;            
+            }
+            // maybe some other stuff, if we get strange numbers
+
+            // this for loop is not a good idea... E se avanza spazio su n invece che su m?
+            // Forse è meglio fare una matrice con gli indici di inizio e fine...
+            for (int i = 0; i < nPortions_row-1; i++) {
+                for (int j = 0; j < nPortions_col-1; j++) {
+                    ths.push_back(std::thread(ThreadBody,i*portionRow,(i+1)*portionRow,j*portionCol,(j+1)*portionCol));
+                }
+                ths.push_back(std::thread(ThreadBody,i*portionRow,(i+1)*portionRow,(nPortions_col-1)*portionCol,A[i].size()));
+            }
+            for (int j = 0; j < nPortions_col-1; j++) {
+                ths.push_back(std::thread(ThreadBody,(nPortions_row-1)*portionRow,A.size(),j*portionCol,(j+1)*portionCol));
+            }
+            ths.push_back(std::thread(ThreadBody,(nPortions_row-1)*portionRow,A.size(),(nPortions_col-1)*portionCol,A[m].size()));
+        */
+        
+        
+
+
         int portion = A.size()/nthreads;  //m divided by nthreads
         int nw;
         /* If there are more threads than rows, then each thread works on
@@ -56,8 +91,8 @@ std::vector<std::vector<T> >* stencil(
         else nw = nthreads;        
     
         std::vector<std::thread> ths;
+        // classic split that leads to poor load balancing
         for(int w = 0; w < nw-1; w++) {
-            // classic split that leads to poor load balancing
             ths.push_back(std::thread(ThreadBody,portion*w,portion*(w+1)));  
         }
         ths.push_back(std::thread(ThreadBody,portion*(nw-1),A.size()));
@@ -92,6 +127,11 @@ std::vector<std::vector<T> >* stencil(
             B[i][j] = f(elems);
         }            
     } 
+
+
+
+
+    
 */
 
 
