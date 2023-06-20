@@ -5,10 +5,12 @@ for((i=0; i<100; i++)) do ./TemplateSeq_main 100 200 123 10 n; done | awk '{sum+
 
 
 piccolo script di awk che estrae i dati (solo i numeri) da un file di testo e ne calcola la media, stampandola
+
 awk '{sum+=$4} END{print sum/NR,$5}' ../Prove\ sparse/Prove\ files\ di\ testo/prova1.txt
 
 
 Piccolo script di awk che calcola media e varianza. La media è giusta, e anche la varianza dovrebbe
+
 awk '{sum+=$4;sumsq+=$4*$4;}
 	{avg=sum/NR;} 
 	END{print "avg =",avg,$5;
@@ -21,4 +23,5 @@ awk '{sum+=$4;sumsq+=$4*$4;}
 		
 Riga di comando per compilare un file con il flag che mostra i loops non vettorizzati, 
 filtra le informazioni relative al file e ridirige tutto in un file di testo
+
 g++ -O3 -fopt-info-vec-missed Sequential1.cpp -o Sequential1 2>&1 | grep "Sequential1.cpp" > sequential1_vec_grep.txt 
