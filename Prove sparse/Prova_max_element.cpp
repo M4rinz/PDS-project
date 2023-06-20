@@ -18,6 +18,10 @@ int main(int argc, char* argv[]) {
     }
     cout << " ]" << endl;
 
+    vector<pair<int,int> >::iterator result = max_element(v.begin(), v.end());
+
+    cout << "result = " << (*result).first << endl;
+
 
 
 
