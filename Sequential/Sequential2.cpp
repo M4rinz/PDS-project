@@ -25,7 +25,21 @@ auto stencil( vector<vector<double> >& A,
             vector<pair<int,int> > neighborhood, 
             int niter) {
 
-    vector< vector<double> > B(A.size(), vector<double>(A[1].size())); 
+
+    // we get the max dimensions
+    vector<pair<int,int> >::iterator maxLeft = max_element(neighborhood.begin(),neighborhood.end(),[] (pair<int,int> a, pair<int,int> b) {return -a.second < -b.second;}); 
+    vector<pair<int,int> >::iterator maxTop = max_element(neighborhood.begin(),neighborhood.end(),[] (pair<int,int> a, pair<int,int> b) {return -a.first < -b.first;}); 
+    vector<pair<int,int> >::iterator maxRight = max_element(neighborhood.begin(),neighborhood.end(),[] (pair<int,int> a, pair<int,int> b) {return a.second < b.second;}); 
+    vector<pair<int,int> >::iterator maxBottom = max_element(neighborhood.begin(),neighborhood.end(),[] (pair<int,int> a, pair<int,int> b) {return a.first < b.first;}); 
+
+    vector<int> margins = {(*maxLeft).second, (*maxTop).first, (*maxRight).second, (*maxBottom).first};
+
+    vector< vector<double> > Abis(A.size-margins[1]+margins[3], vector<double>(A[1].size()-margins[0]+margins[2], 0)); // full of zeroes...
+
+
+    
+
+
 
     for (int k = 0; k < niter; k++) {
 
