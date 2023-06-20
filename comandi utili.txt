@@ -17,3 +17,8 @@ awk '{sum+=$4;sumsq+=$4*$4;}
 		stdev=sqrt(var); 
 		print "stdev =",stdev;
 		}' ../Prove\ sparse/Prove\ files\ di\ testo/prova1.txt
+		
+		
+Riga di comando per compilare un file con il flag che mostra i loops non vettorizzati, 
+filtra le informazioni relative al file e ridirige tutto in un file di testo
+g++ -O3 -fopt-info-vec-missed Sequential1.cpp -o Sequential1 2>&1 | grep "Sequential1.cpp" > sequential1_vec_grep.txt 
