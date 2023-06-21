@@ -77,8 +77,6 @@ std::vector<std::vector<T> >* stencil(
         */
         
         
-
-
         int portion = A.size()/nthreads;  //m divided by nthreads
         int nw;
         /* If there are more threads than rows, then each thread works on
