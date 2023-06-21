@@ -5,7 +5,8 @@
 
 
 template <typename T>
-std::vector<std::vector<T> >* stencil( std::vector<std::vector<T> >& A,
+std::vector<std::vector<T> >* stencil( 
+            std::vector<std::vector<T> >& A,
             std::function<T(std::vector<T>)> f, 
             std::vector<std::pair<int,int> > neighborhood, 
             int niter) {
