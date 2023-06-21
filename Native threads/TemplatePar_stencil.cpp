@@ -104,33 +104,3 @@ std::vector<std::vector<T> >* stencil(
 
     return &A;
 } 
-
-
-
-
-/*     
-    DISCARICA    
-
-
-    for (int i = 0; i < A.size(); i++) {
-        for (int j = 0; j < A[i].size(); j++) {
-            std::vector<T> elems;
-            elems.push_back(A[i][j]);
-            for(auto pair : neighborhood) {
-                int ipf = i+pair.first;
-                int jps = j+pair.second;
-                if((0 <= ipf && ipf < A.size()) && (0 <= jps && jps < A[i].size()))
-                    elems.push_back(A[ipf][jps]);  
-            }
-            B[i][j] = f(elems);
-        }            
-    } 
-
-
-
-
-    
-*/
-
-
-
