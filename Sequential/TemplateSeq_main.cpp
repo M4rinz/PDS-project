@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
     int m = (argc > 1 ? atoi(argv[1]) : 20);           //rows
     int n = (argc > 2 ? atoi(argv[2]) : 20);           //cols
     int seed = (argc > 3 ? atoi(argv[3]) : 123);        //seed
-    int niter = (argc > 4 ? atoi(argv[4]) : 100);      //n° iterations
+    int niter = (argc > 4 ? atoi(argv[4]) : 50);      //n° iterations
     char printflag = (argc > 5 ? *argv[5] : 'n');
 
     // For now let me use vector< vector<double> > as a data structure
