@@ -27,14 +27,23 @@ std::vector<std::vector<T> >* stencil(
             /* for now, each thread works on a "strip", that is
             on a set of rows of the matrix */
             for(int j = 0; j < A[i].size(); j++) {
+                //std::cout << "prev. B["<<i<<"]["<<j<<"] = "<<B[i][j]<<std::endl;
                 elems.push_back(A[i][j]);
                 for(auto pair : neighborhood) {
                     int ipf = i+pair.first;
                     int jps = j+pair.second;
-                    if((0 <= ipf && ipf < A.size()) && (0 <= jps && jps < A[i].size()))
-                        elems.push_back(A[ipf][jps]);  
+                    if((0 <= ipf && ipf < A.size()) && (0 <= jps && jps < A[i].size())){
+                        //std::cout << "adding A["<<ipf<<"]["<<jps<<"] = " << A[ipf][jps] << ", ";
+                        elems.push_back(A[ipf][jps]); 
+                        //std::cout << "elems.size() = " << elems.size() << std::endl;
+                    } 
+                    //std::cout << std::endl;
                 }
                 B[i][j] = f(elems);
+                elems = {};
+                //std::cout << "A["<<i<<"]["<<j<<"] = " << A[i][j] << std::endl;
+                //std::cout << "new B["<<i<<"]["<<j<<"] = "<<B[i][j]<<std::endl;
+                //std::cout << std::endl;
             }
         }        
 
@@ -55,15 +64,15 @@ std::vector<std::vector<T> >* stencil(
         }
         else nw = nthreads;        
     
-        std::vector<std::thread> ths;
+        std::vector<std::thread*> ths;
         // classic split that leads to poor load balancing
         for(int w = 0; w < nw-1; w++) {
-            ths.push_back(std::thread(ThreadBody,portion*w,portion*(w+1)));  
+            ths.push_back(new std::thread(ThreadBody,portion*w,portion*(w+1)));  
         }
-        ths.push_back(std::thread(ThreadBody,portion*(nw-1),A.size()));
+        ths.push_back(new std::thread(ThreadBody,portion*(nw-1),A.size()));
         
-        //for(auto th : ths) th.join();
-        for(int i = 0; i < ths.size(); i++) ths[i].join();
+        for(auto th : ths) th->join();
+        //for(int i = 0; i < ths.size(); i++) ths[i].join();
 
         std::swap(A,B);
 
