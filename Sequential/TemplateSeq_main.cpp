@@ -13,7 +13,7 @@ using namespace std;    //This might be bad habit, but for now I keep it
 // Function that prints the matrix
 void print2DVector(const vector< vector<double> > A) {
     for(int i=0; i< A.size(); i++) {
-        for(int j=0; j<= A[i].size(); j++) {
+        for(int j=0; j< A[i].size(); j++) {
             cout << A[i][j] << " ";
         }
         cout << endl;
@@ -46,7 +46,7 @@ int main(int argc, char* argv[]) {
     //We fill in the matrix with random elements (given the seed)
     for (int i = 0; i < m; i++) {
         for (int j = 0; j < n; j++) {
-            A[i][j] = (double) (rand() % max);
+            A[i][j] = i;//(double) (rand() % max);
         } 
     }
     
