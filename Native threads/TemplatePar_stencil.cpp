@@ -27,11 +27,12 @@ std::vector<std::vector<T> >* stencil(
             /* for now, each thread works on a "strip", that is
             on a set of rows of the matrix */
             for(int j = 0; j < A[i].size(); j++) {
+                int ipf, jps;
                 //std::cout << "prev. B["<<i<<"]["<<j<<"] = "<<B[i][j]<<std::endl;
                 elems.push_back(A[i][j]);
                 for(auto pair : neighborhood) {
-                    int ipf = i+pair.first;
-                    int jps = j+pair.second;
+                    ipf = i+pair.first;
+                    jps = j+pair.second;
                     if((0 <= ipf && ipf < A.size()) && (0 <= jps && jps < A[i].size())){
                         //std::cout << "adding A["<<ipf<<"]["<<jps<<"] = " << A[ipf][jps] << ", ";
                         elems.push_back(A[ipf][jps]); 
