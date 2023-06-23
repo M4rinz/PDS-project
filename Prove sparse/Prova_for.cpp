@@ -12,5 +12,10 @@ int main(int argc, char* argv[]) {
     }
     cout << "n = " << n << endl;
 
+    vector<int> v;
+    v.push_back(74);
+    cout << "v.size() = " << v.size() << endl;
+    for (int i = 0; i<v.size(); i++) cout << v[i] << endl;
+
     return 0;
 }
