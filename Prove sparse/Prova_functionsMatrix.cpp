@@ -6,12 +6,16 @@ using namespace std;
 
 
 vector<vector<int> >* myStencil(function<int(int)> f, vector<vector<int> >& A, int niter) {
+    //vector<vector<int> >* B = new vector<vector<int> >(A.size(), A[1].size());
+    
     for(int k = 0; k < niter; k++) {
         for(int i = 0; i < A.size(); i++) {  
             for(int j = 0; j < A[i].size(); j++)
-                A[i][j] = f(A[i][j]);
+                //(*B)[i].push_back(f(A[i][j]));// = f(A[i][j]);
+                A[i][j]=f(A[i][j]);
         }
     }
+    //swap(A,*B);
 
     return &A;
 }
