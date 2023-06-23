@@ -25,7 +25,7 @@ vector<vector<int> >* myStencil(function<int(int)> f, vector<vector<int> >& A, i
 
 // Function that prints the matrix
 void print2DVector(const vector< vector<int> > A) {
-    for(int i=0; i<A.size(); i++) {
+    for(int i=0; i < A.size(); i++) {
         for(int j=0; j<A[i].size(); j++) {
             cout << A[i][j] << " ";
         }

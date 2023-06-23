@@ -12,7 +12,7 @@ using namespace std;    //This might be bad habit, but for now I keep it
 
 // Function that prints the matrix
 void print2DVector(const vector< vector<double> > A) {
-    for(int i=0; i< A.size(); i++) {
+    for(int i=0; i < A.size(); i++) {
         for(int j=0; j< A[i].size(); j++) {
             cout << A[i][j] << " ";
         }
